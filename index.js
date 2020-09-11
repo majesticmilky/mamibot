@@ -4,8 +4,9 @@ const client = new Discord.Client();
 const random = require('random');
 const dotenv = require('dotenv');
 
-const { token, version } = require('./config.json');
+const { version } = require('./config.json');
 const PREFIX = 'mc!';
+const token = process.env.MAMITOKE
 
 const fs = require('fs');
 
