@@ -10,6 +10,8 @@ const token = process.env.MAMITOKE
 
 const fs = require('fs');
 
+console.log(process.env);
+
 client.commands = new Discord.Collection();
 
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
@@ -33,16 +35,7 @@ client.on('guildMemberAdd', member => {
 
 client.on('ready', () => {
     console.log(`Bot running ${version}`);
-
-    setInterval(() => {
-        const statuses = [
-            `servers`,
-            `my twitter feed`,
-            `couples`,
-        ]
-        const status = statuses[Math.floor(Math.random() * statuses.length)]
-        client.user.setActivity(status, {type: "WATCHING"})
-    }, 7000)
+        client.user.setActivity(` ${client.guilds.cache.size} servers`, { type: 'WATCHING' });
 });
 
 client.on('message', async message => {
