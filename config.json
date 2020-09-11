@@ -1,0 +1,8 @@
+
+
+ {
+    "token": "process.env.MAMITOKE",
+   
+    "prefix": "mc!",
+    "version": "1.5"
+}
