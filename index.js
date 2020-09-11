@@ -32,6 +32,16 @@ client.on('guildMemberAdd', member => {
 
 client.on('ready', () => {
     console.log(`Bot running ${version}`);
+
+    setInterval(() => {
+        const statuses = [
+            `servers`,
+            `my twitter feed`,
+            `couples`,
+        ]
+        const status = statuses[Math.floor(Math.random() * statuses.length)]
+        client.user.setActivity(status, {type: "WATCHING"})
+    }, 7000)
 });
 
 client.on('message', async message => {
