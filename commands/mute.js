@@ -1,0 +1,30 @@
+const Discord = require('discord.js');
+
+module.exports = {
+    name: 'mute',
+    description: 'mute command',
+    execute(message, args){
+        const { prefix, token } = require('../config.json');
+        const muteEmbed = new Discord.MessageEmbed()
+            .setColor('#ffea61')
+            .setDescription('You don\'t have permission');
+            
+            const muteEmbed2 = new Discord.MessageEmbed()
+            .setColor('#ffea61')
+            .setDescription('You need to tag someone');
+
+            const muteEmbed3 = new Discord.MessageEmbed()
+            .setColor('#ffea61')
+            .setDescription(' ' + args[1] + ' was muted by ' + message.member.user.tag);
+            if(!message.member.permissions.has("MUTE_MEMBERS")) return message.channel.send(muteEmbed);
+
+            if(!args[1])return message.channel.send(muteEmbed2)
+
+            var muterole = message.guild.roles.cache.find(role => role.name === "Muted");
+            var memrole = message.guild.roles.cache.find(role => role.name === "Member");
+            if(!message.guild.roles.cache.find(role => memrole.name === "Member"))return;
+            if(!message.guild.roles.cache.find(role => muterole.name === "Muted"))return message.channel.send('> Please create a role named `Muted`');
+            member.roles.add(muterole).then(message.channel.send(muteEmbed3));
+            member.roles.remove(memrole);
+    }
+}
