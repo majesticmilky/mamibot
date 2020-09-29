@@ -107,16 +107,7 @@ module.exports = {
             message.channel.send(pollEmbed);
             return;
             }
-            if(args[1] === 'neko'){
-                const nekoEmbed = new Discord.MessageEmbed()
-                .setAuthor('Neko')
-            .setDescription('This command will let you pick from eight different Neko/Anime roleplay commands, they are: `Kiss` `Hug` `Pat` ||blowjob, bj, sex, fuck, lewd||')
-            .addFields({name: 'Permission:', value: 'User'})
-            .setColor('#ffea61')
-            .setFooter(`${message.member.user.tag}`);
-            message.channel.send(nekoEmbed);
-            return;
-            }
+            
             if(args[1] === 'ui'){
                 const uiEmbed = new Discord.MessageEmbed()
                 .setAuthor('User Info')
@@ -176,8 +167,7 @@ module.exports = {
             .addFields({name: 'Moderation', value:'`Ban` `Kick` `Clear` `Warn` `Mute` `Unmute` `slowmode`'},
                        {name: 'Fun', value:'`Nothing`'},
                        {name: 'Misc', value:'`Poll` `ui` `avatar`'},
-                       {name: 'Server', value:'`Ping` `Help` `Invite` `Server`'},
-                       {name: 'Neko', value: '`pat` `kiss` `hug` NSFW: ||blowjob, bj, sex, fuck, lewd||'})
+                       {name: 'Server', value:'`Ping` `Help` `Invite` `Server`'}
             .setFooter(`${message.member.user.tag}`);
 
             message.channel.send(helpEmbed);
