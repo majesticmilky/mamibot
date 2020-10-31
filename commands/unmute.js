@@ -5,6 +5,8 @@ module.exports = {
     description: 'unmtue command',
     execute(message, args){
         const { prefix, token } = require('../config.json');
+        const member = message.mentions.members.first();
+
         const unmuteEmbed = new Discord.MessageEmbed()
             .setColor('#ffea61')
             .setDescription('You don\'t have permission');
