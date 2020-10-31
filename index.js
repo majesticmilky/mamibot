@@ -4,13 +4,14 @@ const client = new Discord.Client();
 const random = require('random');
 const dotenv = require('dotenv');
 
-const { version } = require('./config.json');
+const { token, version } = require('./config.json');
+
 const PREFIX = 'mc!';
-const token = process.env.MAMITOKE
 
 const fs = require('fs');
+const { name } = require('./commands/ban');
 
-console.log(process.env);
+//console.log(process.env);
 
 client.commands = new Discord.Collection();
 
@@ -28,9 +29,9 @@ client.on('guildMemberAdd', member => {
 
     member.roles.add(role);
     if(!channel)return;
-
+    
     channel.send(`Welcome ${member.user.tag} to the server!`);
-    member.send(`Welcome ${member.user.tag} to to the server!}`);
+    member.send(`Welcome ${member.user.tag} to the server!}`);
 })
 
 client.on('ready', () => {
@@ -42,15 +43,22 @@ client.on('message', async message => {
 
     const member = message.mentions.members.first();
 
-    if(message.author.bot || !message.content.startsWith(PREFIX))return;
+    if(message.author.bot || !message.content.startsWith(PREFIX))return;  
 
     const args = message.content.slice(PREFIX.length).split(/ +/g);
     
     switch(args[0].toLowerCase()){
 
-        case 'slow':
-        client.commands.get('slowmode').execute(message, args);
-        break;
+            case 'slow':
+            client.commands.get('slowmode').execute(message, args);
+            break;
+
+            case 'bugreport':
+            client.commands.get('report').execute(client, message, args);
+            break;
+            case 'bug':
+            client.commands.get('report').execute(client, message, args);
+            break;
 
         case 'server':
             client.commands.get('server').execute(message, args);
@@ -112,6 +120,10 @@ client.on('message', async message => {
             client.commands.get('userInfo').execute(message, args);
         break;
 
+        case 'snipe':
+            client.commands.get('userInfo').execute(message, args);
+        break;
+
         case 'av':
             client.commands.get('avatar').execute(message, args);
         break;
@@ -134,6 +146,26 @@ client.on('message', async message => {
 
         case 'inv':
             client.commands.get('invite').execute(message, args);
+        break;
+
+        case 'faq':
+            client.commands.get('faq').execute(message, args);
+        break;
+
+        case 'si':
+            client.commands.get('si').execute(message, args);
+        break;
+
+        case 'serverinfo':
+            client.commands.get('si').execute(message, args);
+        break;
+
+        case 'botinfo':
+            client.commands.get('bi').execute(message, args);
+        break;
+
+        case 'bi':
+            client.commands.get('bi').execute(message, args);
         break;
     }
 })
